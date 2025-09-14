@@ -1,6 +1,4 @@
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:3000";
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 // interface ApiResponse<T> {
 //   success: boolean;
 //   data?: T;
@@ -37,25 +35,25 @@ interface OTPResponse {
 }
 
 class ApiError extends Error {
-  constructor(message: string, public status?: number) {
+  constructor(
+    message: string,
+    public status?: number,
+  ) {
     super(message);
-    this.name = "ApiError";
+    this.name = 'ApiError';
   }
 }
 
 async function handleResponse<T>(response: Response): Promise<T> {
   if (!response.ok) {
-    const errorText = await response.text().catch(() => "Unknown error");
-    throw new ApiError(
-      `API Error: ${response.status} - ${errorText}`,
-      response.status
-    );
+    const errorText = await response.text().catch(() => 'Unknown error');
+    throw new ApiError(`API Error: ${response.status} - ${errorText}`, response.status);
   }
 
   try {
     return await response.json();
   } catch {
-    throw new ApiError("Invalid JSON response from server");
+    throw new ApiError('Invalid JSON response from server');
   }
 }
 
@@ -63,9 +61,9 @@ export const api = {
   // Create new TOTP entry
   async createTOTP(data: CreateTOTPRequest): Promise<TOTPResponse> {
     const response = await fetch(`${API_BASE_URL}/api/totp`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
@@ -81,9 +79,9 @@ export const api = {
   // Update TOTP entry
   async updateTOTP(data: UpdateTOTPRequest): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/api/totp/${data.id}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         issuer: data.issuer,
@@ -96,7 +94,7 @@ export const api = {
   // Delete TOTP entry
   async deleteTOTP(id: string): Promise<void> {
     const response = await fetch(`${API_BASE_URL}/api/totp/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
     return handleResponse<void>(response);
   },
@@ -108,11 +106,5 @@ export const api = {
   // },
 };
 
-export type {
-  TOTPEntry,
-  CreateTOTPRequest,
-  UpdateTOTPRequest,
-  TOTPResponse,
-  OTPResponse,
-};
+export type { TOTPEntry, CreateTOTPRequest, UpdateTOTPRequest, TOTPResponse, OTPResponse };
 export { ApiError };
