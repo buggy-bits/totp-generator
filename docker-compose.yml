@@ -4,9 +4,9 @@ services:
     image: mongo:latest
     container_name: mongodb
     environment:
-      MONGO_INITDB_ROOT_USERNAME: sai
-      MONGO_INITDB_ROOT_PASSWORD: nag
-      MONGO_INITDB_DATABASE: shit
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: mainDB
     ports:
       - "27017:27017"
     volumes:
