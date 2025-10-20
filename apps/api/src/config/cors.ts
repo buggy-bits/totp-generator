@@ -1,10 +1,14 @@
-import cors from "cors";
-import { FRONTEND_URL } from "./env";
+import cors from 'cors';
+import { ALLOWED_ORIGINS } from './env';
+
+const allowedOrigins = ALLOWED_ORIGINS
+  ? ALLOWED_ORIGINS.split(',').map((origin) => origin.trim())
+  : [];
 
 const corsOptions: cors.CorsOptions = {
-  origin: [FRONTEND_URL || "http://localhost:3000"], // Add your frontend URLs here
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true, // Allow cookies if needed
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
 };
 
 export default cors(corsOptions);

@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback, useRef } from "react";
-import { api, OTPResponse } from "../utils/api";
+import { useState, useEffect, useCallback, useRef } from 'react';
+import { api, OTPResponse } from '../utils/api';
 
 interface UseOTPResult {
   otp: string | null;
@@ -24,18 +24,18 @@ export function useOTP(id: string | null): UseOTPResult {
     if (fetchInProgress.current || !id) return;
 
     fetchInProgress.current = true;
-    console.log("Fetching new OTP...");
+    // console.log("Fetching new OTP...");
     setIsLoading(true);
     setError(null);
 
     try {
       const response: OTPResponse = await api.getOTP(id);
-      console.log("OTP fetched successfully:", response);
+      // console.log("OTP fetched successfully:", response);
       setOtp(response.otp);
       setExpires(response.expires); // ← This updates state → triggers re-render
     } catch (err) {
-      console.error("Failed to fetch OTP:", err);
-      setError(err instanceof Error ? err.message : "Failed to fetch OTP");
+      // console.error("Failed to fetch OTP:", err);
+      setError(err instanceof Error ? err.message : 'Failed to fetch OTP');
       setOtp(null);
       setExpires(0);
     } finally {
@@ -58,15 +58,11 @@ export function useOTP(id: string | null): UseOTPResult {
 
       const seconds = new Date().getSeconds();
       const shouldRefresh =
-        (remaining <= 0 || seconds === 0 || seconds === 30) &&
-        !fetchInProgress.current;
+        (remaining <= 0 || seconds === 0 || seconds === 30) && !fetchInProgress.current;
 
       if (shouldRefresh) {
-        const reason =
-          remaining <= 0 ? "expired" : seconds === 0 ? ":00" : ":30";
-        console.log(
-          `🚀 Refreshing OTP at ${new Date().toISOString()} - reason: ${reason}`
-        );
+        const reason = remaining <= 0 ? 'expired' : seconds === 0 ? ':00' : ':30';
+        console.log(`🚀 Refreshing OTP at ${new Date().toISOString()} - reason: ${reason}`);
         fetchOTP();
       }
     };
@@ -80,7 +76,7 @@ export function useOTP(id: string | null): UseOTPResult {
     // ✅ CLEANUP: Always clear interval on unmount OR before re-running effect
     return () => {
       if (intervalRef.current) {
-        console.log("🧹 Cleared interval");
+        // console.log("🧹 Cleared interval");
         clearInterval(intervalRef.current);
         intervalRef.current = undefined;
       }
@@ -90,7 +86,7 @@ export function useOTP(id: string | null): UseOTPResult {
   // Initial fetch
   useEffect(() => {
     if (id) {
-      console.log("⚡ Initial fetch triggered");
+      // console.log("⚡ Initial fetch triggered");
       fetchOTP();
     }
   }, [id, fetchOTP]);
@@ -99,7 +95,7 @@ export function useOTP(id: string | null): UseOTPResult {
   useEffect(() => {
     return () => {
       if (intervalRef.current) {
-        console.log("🗑️ Final cleanup: cleared interval on unmount");
+        // console.log("🗑️ Final cleanup: cleared interval on unmount");
         clearInterval(intervalRef.current);
       }
     };
