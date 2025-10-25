@@ -8,7 +8,20 @@
 A free, minimal **TOTP (Time-based One-Time Password) Generator**.  
 This app lets you add and manage secrets, generate secure OTPs, and view them with a sleek timer interface – all stored safely in your browser.
 
----
+## Screenshots
+
+<div align="center" style="margin-top: 10px;margin-bottom: 10px; display: flex; justify-content: center;">
+
+<figure>
+  <img src="assets/screenshots/homepage.png" alt="HomePage">
+  <figcaption><h3>Homepage</h3></figcaption>
+</figure>
+
+<figure>
+  <img src="assets/screenshots/otp.png" alt="OTPpage" >
+  <figcaption><h3>Dedicated Otp page</h3></figcaption>
+</figure>
+  </div>
 
 ## How It Works
 
@@ -20,8 +33,6 @@ Time-based OTPs (TOTP) are generated using the **HMAC-SHA1 hashing algorithm** c
 - The output is truncated to produce a short 6-digit one-time password.
 
 This approach ensures that the OTP is valid only for the current time window and changes in sync across systems that share the same secret.
-
----
 
 ## Features
 
