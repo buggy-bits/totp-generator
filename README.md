@@ -8,18 +8,38 @@
 A free, minimal **TOTP (Time-based One-Time Password) Generator**.  
 This app lets you add and manage secrets, generate secure OTPs, and view them with a sleek timer interface – all stored safely in your browser.
 
+<div align="center" style=" display: flex;">
+<figure style="width: 50%;">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/HLD-dark.png" />
+    <source media="(prefers-color-scheme: light)" srcset="assets/diagrams/HLD-light.png" />
+    <img src="assets/diagrams/HLD-light.png" alt="HLD Diagram" />
+  </picture>
+  <figcaption><p>High Level Design</p></figcaption>
+</figure>
+
+<figure style="width: 50%; ">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/sequence-dark.png" />
+    <source media="(prefers-color-scheme: light)" srcset="assets/diagrams/HLD-light.png" />
+    <img src="assets/diagrams/sequence-light.png" alt="HLD Diagram" />
+  </picture>
+  <figcaption><p>Sequence Diagram</p></figcaption>
+</figure>
+</div>
+
 ## Screenshots
 
 <div align="center" style="margin-top: 10px;margin-bottom: 10px; display: flex; justify-content: center;">
 
 <figure>
   <img src="assets/screenshots/homepage.png" alt="HomePage">
-  <figcaption><h3>Homepage</h3></figcaption>
+  <figcaption><p>Homepage</p></figcaption>
 </figure>
 
 <figure>
   <img src="assets/screenshots/otp.png" alt="OTPpage" >
-  <figcaption><h3>Dedicated Otp page</h3></figcaption>
+  <figcaption><p>Dedicated Otp page</p></figcaption>
 </figure>
   </div>
 
